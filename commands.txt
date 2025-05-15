@@ -1,0 +1,43 @@
+to Create Service
+> nest g service s_namenest 
+
+Command	Description
+
+Creates a new NestJS project with a full starter setup.
+> nest new <project-name>	
+
+Generates a new microservice application within a monorepo.
+> nest generate app <name>	
+
+Generates a new module (used to organize features for scalability).
+> nest generate module <name> / nest g mo <name>	
+
+Generates a new controller (handles incoming requests).
+> nest generate controller <name> / nest g co <name>	
+
+Generates a new service (used for business logic).
+> nest generate service <name> / nest g s <name>	
+
+Generates a new provider (injectable service or class).
+> nest generate provider <name> / nest g pr <name>	
+
+Generates a WebSocket gateway.
+> nest generate gateway <name>	
+
+Generates a custom interceptor (useful for logging, response mapping).
+> nest generate interceptor <name>	
+
+Creates custom middleware (used for cross-cutting concerns like auth, logging).
+> nest generate middleware <name>	
+
+Creates a guard (used for authorization).
+> nest generate guard <name>	
+
+Creates a pipe (used for input validation and transformation).
+> nest generate pipe <name>	
+
+Creates a custom decorator (for reusable metadata).
+> nest generate decorator <name>	
+
+Creates an exception filter (custom error handling).
+> nest generate filter <name>	
