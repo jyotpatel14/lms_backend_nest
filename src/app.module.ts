@@ -1,14 +1,21 @@
-import { Module } from '@nestjs/common';
+import { Module, UseInterceptors } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersService } from './users/users.service';
-import { UsersController } from './users/users.controller';
-import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
+import configuration from './config/configuration';
+import { UsersModule } from './modules/users/users.module';
+import { DatabaseModule } from './modules/database/database.module';
 
 @Module({
-  imports: [UsersModule],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+    }),
+    UsersModule,
+    DatabaseModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
