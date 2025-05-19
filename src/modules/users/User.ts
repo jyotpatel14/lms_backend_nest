@@ -1,10 +1,58 @@
-import { v4 as uuidv4 } from 'uuid';
+import { Exclude } from 'class-transformer';
+import {
+  IsEmail,
+  isEmail,
+  IsOptional,
+  IsPhoneNumber,
+  IsUUID,
+} from 'class-validator';
 
 export class User {
+  @IsUUID()
   id: string;
+
   name: string;
+
+  @IsEmail()
   email: string;
+
+  @IsPhoneNumber()
   phone: string;
+
+  is_active: number;
+  created_at: Date;
+  created_by: string;
+  updated_at: Date;
+  updated_by: string;
+  deleted_at: Date;
+  deleted_by: string;
+
+  @Exclude()
+  password: string;
+}
+
+export class UserLoginDTO {
+  name: string;
+
+  @IsEmail()
+  email: string;
+
+  @Exclude()
+  password: string;
+}
+export class UserSignUpDTO {
+  name: string;
+
+  @IsEmail()
+  email: string;
+
+  @IsOptional()
+  // @IsPhoneNumber('US')
+  @IsPhoneNumber('IN')
+  phone: string;
+
+  @Exclude()
+  password: string;
 }
 
 // export class UserModel {

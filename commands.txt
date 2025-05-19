@@ -41,3 +41,11 @@ Creates a custom decorator (for reusable metadata).
 
 Creates an exception filter (custom error handling).
 > nest generate filter <name>	
+
+
+
+/////////////////
+TYPEORM
+
+
+>nest g resource user

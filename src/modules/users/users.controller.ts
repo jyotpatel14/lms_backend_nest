@@ -14,27 +14,33 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './User';
+import { instanceToPlain } from 'class-transformer';
 
-@Controller('users')
+@Controller('/user')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async getAllUsers(): Promise<User[]> {
+  async getAllUsers(): Promise<Partial<User>[]> {
     return await this.usersService.getAll();
   }
 
   @Get('/:id')
-  async getUserById(@Param('id', ParseUUIDPipe) id: string): Promise<User> {
+  async getUserById(
+    @Param('id', ParseUUIDPipe) id: string,
+  ): Promise<Partial<User>> {
     const user = await this.usersService.getById(id);
     if (!user) {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
+
     return user;
   }
 
   @Post()
-  async createUser(@Body() user: Omit<User, 'id'>): Promise<{ id: string }> {
+  async createUser(
+    @Body() user: Pick<User, 'email' | 'password' | 'name' | 'phone'>,
+  ): Promise<{ id: string }> {
     const id = await this.usersService.create(user);
     return { id };
   }
