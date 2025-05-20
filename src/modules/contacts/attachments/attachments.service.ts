@@ -12,15 +12,15 @@ export class AttachmentsService {
     return `This action returns all attachments`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} attachment`;
   }
 
-  update(id: number, updateAttachmentDto: UpdateAttachmentDto) {
+  update(id: string, updateAttachmentDto: UpdateAttachmentDto) {
     return `This action updates a #${id} attachment`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} attachment`;
   }
 }

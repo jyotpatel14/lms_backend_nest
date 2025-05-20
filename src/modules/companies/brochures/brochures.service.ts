@@ -12,15 +12,15 @@ export class BrochuresService {
     return `This action returns all brochures`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} brochure`;
   }
 
-  update(id: number, updateBrochureDto: UpdateBrochureDto) {
+  update(id: string, updateBrochureDto: UpdateBrochureDto) {
     return `This action updates a #${id} brochure`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} brochure`;
   }
 }

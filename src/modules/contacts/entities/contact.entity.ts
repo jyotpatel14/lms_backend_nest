@@ -1,12 +1,21 @@
 import { DefaultEntity } from 'src/entities/defaultEntity';
 import { Event } from 'src/modules/events/entities/event.entity';
-import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from 'typeorm';
+import { Note } from 'src/modules/contacts/notes/entities/note.entity';
+import { Attachment } from 'src/modules/contacts/attachments/entities/attachment.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('tbl_contacts')
-export class Attachment extends DefaultEntity {
-  @PrimaryColumn({
-    length: 36,
-  })
+export class Contact extends DefaultEntity {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -45,7 +54,7 @@ export class Attachment extends DefaultEntity {
   @ManyToMany(() => Event) // Many-to-many relation with the Event entity
   @JoinTable({
     // Create the join table with columns for both sides
-    name: 'contact_events', // Name of the junction table (optional)
+    name: 'tbl_contact_events', // Name of the junction table (optional)
     joinColumn: {
       // This defines the join column for the "Contact" side
       name: 'contact_id', // The name of the column in the junction table
@@ -58,4 +67,10 @@ export class Attachment extends DefaultEntity {
     },
   })
   events: Event[];
+
+  @OneToMany(() => Note, (note) => note.contact)
+  notes: Event[];
+
+  @OneToMany(() => Attachment, (attachment) => attachment.contact)
+  attachments: Attachment[];
 }

@@ -8,7 +8,9 @@ import {
   UnauthorizedException,
   ValidationPipe,
 } from '@nestjs/common';
-import { User, UserLoginDTO, UserSignUpDTO } from '../users/User';
+import { UserLoginDTO } from './dto/user-login.dto';
+import { UserSignUpDTO } from './dto/user-signup.dto';
+// import { User, UserLoginDTO, UserSignUpDTO } from '../users/User';
 
 @Controller()
 export class AuthController {
@@ -16,7 +18,6 @@ export class AuthController {
   login(@Body() loginDTO: UserLoginDTO): any {
     try {
       //   throw new Error(); // simulate failed login
-
       return {
         loginDTO,
         message: 'login successful',
@@ -24,8 +25,8 @@ export class AuthController {
     } catch (e: unknown) {
       throw new UnauthorizedException('login unsuccessful');
     }
+    return 'This Sevice Logs User In.';
   }
-
   @Post('/signup')
   signup(
     @Body()
@@ -33,7 +34,6 @@ export class AuthController {
   ): Object {
     return signupDTO;
   }
-
   @Get('/logout')
   logout(): string {
     return 'logout';

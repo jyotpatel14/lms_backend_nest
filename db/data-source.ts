@@ -7,7 +7,7 @@ export const dataSourceOptions: DataSourceOptions = {
   password: '1234',
   database: 'gamete',
   entities: ['dist/**/*.entity.js'],
-  //   synchronize: true,
+  synchronize: false,
   migrations: ['dist/db/migrations/*.js'],
 };
 

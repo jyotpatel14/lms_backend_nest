@@ -1,11 +1,15 @@
 import { DefaultEntity } from 'src/entities/defaultEntity';
-import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('tbl_events')
 export class Event extends DefaultEntity {
-  @PrimaryColumn({
-    length: 36,
-  })
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
